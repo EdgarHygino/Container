@@ -3,6 +3,10 @@ package com.port.container.model;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Event implements Serializable {
@@ -13,11 +17,21 @@ public class Event implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotBlank(message = "Cliente é Obrigatório")
+    @Size(max = 30, message = "Maximo 30 caracteres")
     private String client;
+
+    @NotBlank(message = "Obrigatório informar o número do container")
     private String numberCntr;
+
+    @NotBlank(message = "Obrigatório informar o tipo")
     private String type;
+
+    @NotBlank(message = "Obrigatório informar o status")
     private String status;
-    private String category;
+
+    @NotNull(message = "Obrigatório selecionar a categoria")
+    private Category category;
 
     @ManyToOne
     private Move move;
@@ -62,11 +76,11 @@ public class Event implements Serializable {
         this.status = status;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 }

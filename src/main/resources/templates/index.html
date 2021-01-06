@@ -27,9 +27,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="event : ${events}">
+            <tr class="thead-dark" th:each="event : ${events}">
+                <td><a th:href="${(#mvc.url('CC#registerMovement').arg(0, event.id)).build()}"><span th:text="${event.numberCntr}"></span></a></td>
                 <td><span th:text="${event.client}"></span></td>
-                <td><span th:text="${event.numberCntr}"></td>
                 <td><span th:text="${event.type}"></span></td>
                 <td><span th:text="${event.status}"></span></td>
                 <td><span th:text="${event.category}"></span></td>
